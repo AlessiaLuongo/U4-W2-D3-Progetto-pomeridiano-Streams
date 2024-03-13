@@ -49,25 +49,31 @@ if (!listFirstExcercise.isEmpty()){
         Customer customer2 = new Customer("Customer2");
         Customer customer3 = new Customer("Customer3");
 
-        Order order1 = new Order("Harry Potter e il prigioniero di Azkaban", customer1);
-        Order order2 = new Order("La Storia del Rock", customer1);
-        Order order3 = new Order("T-Shirt", customer2);
-        Order order4 = new Order("Pantaloni", customer2);
-        Order order5 = new Order("Biberon", customer3);
-        Order order6 = new Order("Culla", customer3);
-        Order order7 = new Order("Come smacchiare leopardi", customer1);
-        Order order8 = new Order("Ciuccio", customer2);
+        Order order1 = new Order("Delay", customer1);
+        Order order2 = new Order("Success", customer1);
+        Order order3 = new Order("Failure", customer2);
 
         order1.getProducts().add(product1);
-        order2.getProducts().add(product2);
-        order3.getProducts().add(product3);
-        order4.getProducts().add(product4);
-        order5.getProducts().add(product5);
-        order6.getProducts().add(product6);
-        order7.getProducts().add(product7);
-        order8.getProducts().add(product8);
+        order1.getProducts().add(product2);
+        order1.getProducts().add(product3);
+        order2.getProducts().add(product4);
+        order2.getProducts().add(product5);
+        order3.getProducts().add(product5);
+        order3.getProducts().add(product6);
+        order3.getProducts().add(product6);
 
-        
+        List<Order> listOfOrders = new ArrayList<>();
+        listOfOrders.add(order1);
+        listOfOrders.add(order2);
+        listOfOrders.add(order3);
+        listOfOrders.stream().filter(order -> order.getProducts().stream().anyMatch(product -> product.getCategory().equals("Baby"))).toList();
 
+        List<Order> listOfOrdersWithBabyProducts = listOfOrders.stream()
+                .filter(order -> order.getProducts().stream()
+                        .anyMatch(product -> product.getCategory().equals("Baby")))
+                .toList();
+
+        System.out.println(listOfOrdersWithBabyProducts);
+        System.out.println(listOfOrdersWithBabyProducts.size());
 
 }}
