@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Random;
+
 public class Customer {
 
     private Long id;
@@ -7,10 +9,11 @@ public class Customer {
     private Integer tier;
 
 //CONSTRUCTOR
-    public Customer(long id, String name, Integer tier) {
-        this.id = id;
+    public Customer( String name ) {
+        Random idRandomNumber = new Random();
+        this.id = idRandomNumber.nextLong();
         this.name = name;
-        this.tier = tier;
+        this.tier = idRandomNumber.nextInt();
     }
 
 //GETTERS AND SETTERS

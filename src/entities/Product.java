@@ -12,6 +12,7 @@ public class Product {
 
 //CONSTRUCTOR
 
+
     public Product(String name, String category) {
         Random idRandomNumber = new Random();
         Random priceRandomNumber = new Random();

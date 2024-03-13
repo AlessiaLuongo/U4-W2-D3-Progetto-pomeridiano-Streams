@@ -1,6 +1,7 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -21,13 +22,13 @@ private Customer customer;
         this.id = this.id = idRandomNumber.nextLong();;
     }
 
-    public Order( String status, LocalDate orderDate, LocalDate deliveryDate, List<Product> products, Customer customer) {
+    public Order( String status,  Customer customer) {
         Random idRandomNumber = new Random();
         this.id = this.id = idRandomNumber.nextLong();;
         this.status = status;
-        this.orderDate = orderDate;
-        this.deliveryDate = deliveryDate;
-        this.products = products;
+        this.orderDate = LocalDate.now();
+        this.deliveryDate = LocalDate.now().plusDays(7);
+        this.products = new ArrayList<>();
         this.customer = customer;
     }
 
