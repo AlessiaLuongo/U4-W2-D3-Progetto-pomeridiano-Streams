@@ -3,11 +3,14 @@ import entities.Order;
 import entities.Product;
 
 import java.awt.color.ProfileDataException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 
 public class Main {
 
@@ -46,13 +49,18 @@ if (!listFirstExcercise.isEmpty()){
 
 // LISTA DI ORDINI DI CATEGORIA BABY
 
-        Customer customer1 = new Customer("Customer1");
-        Customer customer2 = new Customer("Customer2");
-        Customer customer3 = new Customer("Customer3");
+        Customer customer1 = new Customer("Customer1", 1);
+        Customer customer2 = new Customer("Customer2", 2);
+        Customer customer3 = new Customer("Customer3",2);
+        Customer customer4 = new Customer("Customer3",3);
+
 
         Order order1 = new Order("Delay", customer1);
         Order order2 = new Order("Success", customer1);
         Order order3 = new Order("Failure", customer2);
+        Order order4 = new Order("Success", customer2);
+        Order order5 = new Order("Success", customer2);
+
 
         order1.getProducts().add(product1);
         order1.getProducts().add(product2);
@@ -84,5 +92,17 @@ if (!listFirstExcercise.isEmpty()){
                 .map(product -> new Product(product.getName(), product.getCategory(), product.getPrice() * 0.9))
                 .collect(Collectors.toList());
         System.out.println("LISTA DI PRODOTTI DI CATEGORIA BOYS SCONTATI DEL 10%: " + listOfBoyProductsWithDiscount);
+
+// LISTA DI PRODOTTI ORDINATI DA CLIENTE DI TIER 2 TRA L’01-FEB-2021 e L’01-APR-2021
+// LISTA DI PRODOTTI ORDINATI DA CLIENTE DI TIER 2 TRA L’01-FEB-2021 e L’01-APR-2021
+
+        LocalDate startDate = LocalDate.of(2021, 2, 1);
+        LocalDate endDate = LocalDate.of(2021, 4, 1);
+
+        List<Product> listOfProductsOrderedByTierTwo = listOfOrders.stream()
+                .filter(order -> Objects.equals(order.getCustomer().getTier(), 2))
+                .filter(order -> order.getOrderDate().isAfter(startDate) && order.getOrderDate().isBefore(endDate))
+                .flatMap(order -> order.getProducts().stream())
+                .collect(Collectors.toList());
 
     }}

@@ -9,12 +9,15 @@ public class Customer {
     private Integer tier;
 
 //CONSTRUCTOR
-    public Customer( String name ) {
+
+    public Customer( String name, Integer tier) {
         Random idRandomNumber = new Random();
         this.id = idRandomNumber.nextLong();
         this.name = name;
-        this.tier = idRandomNumber.nextInt();
+        this.tier = tier;
     }
+
+
 
 //GETTERS AND SETTERS
 
