@@ -25,6 +25,17 @@ public class Product {
 
     }
 
+
+
+
+    public Product(String name, String category, double price) {
+        Random idRandomNumber = new Random();
+        this.id = idRandomNumber.nextLong();
+        this.name = name;
+        this.category = category;
+        this.price = price;
+    }
+
 //GETTERS AND SETTERS
 
 

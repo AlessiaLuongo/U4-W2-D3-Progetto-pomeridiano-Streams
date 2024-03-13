@@ -17,12 +17,13 @@ public class Main {
     public static void main(String[] args) {
     Product product1 = new Product("Harry Potter e il prigioniero di Azkaban", "Book");
     Product product2 = new Product("La Storia del Rock", "Book");
-    Product product3 = new Product("T-Shirt", "Abbigliamento");
-    Product product4 = new Product("Pantaloni", "Abbigliamento");
+    Product product3 = new Product("T-Shirt", "Boys");
+    Product product4 = new Product("Pantaloni", "Boys");
     Product product5 = new Product("Biberon", "Baby");
     Product product6 = new Product("Culla", "Baby");
     Product product7 = new Product("Come smacchiare leopardi", "Book");
-    Product product8 = new Product("Ciuccio", "Baby");
+    Product product8 = new Product("Skateboard", "Boys");
+
 
     List<Product> listOfAllProducts = new ArrayList<>();
         listOfAllProducts.add(product1);
@@ -38,7 +39,7 @@ public class Main {
 
 List<Product> listFirstExcercise = listOfAllProducts.stream().filter(product -> product.getCategory().equals("book") && product.getPrice() > 100).toList();
 if (!listFirstExcercise.isEmpty()){
-    System.out.println(listFirstExcercise);
+    System.out.println("LISTA DI PRODOTTI DI CATEGORIA BOOK CON PREZZO >100: " + listFirstExcercise);
 }else{
     System.out.println("Nothing found");
 }
@@ -73,7 +74,15 @@ if (!listFirstExcercise.isEmpty()){
                         .anyMatch(product -> product.getCategory().equals("Baby")))
                 .toList();
 
-        System.out.println(listOfOrdersWithBabyProducts);
+        System.out.println("LISTA DI ORDINI DI CATEGORIA BABY: " + listOfOrdersWithBabyProducts);
         System.out.println(listOfOrdersWithBabyProducts.size());
 
-}}
+//LISTA DI PRODOTTI DI CATEGORIA BOYS SCONTATI DEL 10%
+
+        List<Product> listOfBoyProductsWithDiscount = listOfAllProducts.stream()
+                .filter(product -> product.getCategory().equals("Boys"))
+                .map(product -> new Product(product.getName(), product.getCategory(), product.getPrice() * 0.9))
+                .collect(Collectors.toList());
+        System.out.println("LISTA DI PRODOTTI DI CATEGORIA BOYS SCONTATI DEL 10%: " + listOfBoyProductsWithDiscount);
+
+    }}
